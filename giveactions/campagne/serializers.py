@@ -6,7 +6,7 @@ from .models import Campagne, Tag
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tag
-        fields = ('nom')
+        fields = ('nom',)
 
 class CampagneSerializer(serializers.HyperlinkedModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
