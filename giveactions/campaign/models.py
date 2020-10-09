@@ -1,5 +1,6 @@
 from django.db import models
 
+#models file, contains classes, which creates the table in the database
 
 class Tag(models.Model):
     name = models.CharField(max_length=20)

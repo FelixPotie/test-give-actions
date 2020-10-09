@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#the urls of the campaign app are in the urls file of the app
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('campaign.urls')),

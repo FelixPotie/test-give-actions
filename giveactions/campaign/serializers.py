@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Campaign, Tag
 
+#this file serialize and deserialize the objects into json 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
