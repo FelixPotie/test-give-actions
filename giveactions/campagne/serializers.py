@@ -6,10 +6,10 @@ from .models import Campagne, Tag
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tag
-        fields = ('nom',)
+        fields = ('id','nom',)
 
 class CampagneSerializer(serializers.HyperlinkedModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
     class Meta:
         model = Campagne
-        fields = ('titre', 'description', 'image', 'tags')
+        fields = ('id','titre', 'description', 'image', 'tags')
