@@ -8,7 +8,7 @@ class Tag(models.Model):
         return self.nom
 
 
-class Campagne(models.Model):
+class Campaign(models.Model):
     titre = models.CharField(max_length=50)
     description = models.CharField(max_length=600)
     image = models.URLField()

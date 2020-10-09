@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Campagne, Tag
+from .models import Campaign, Tag
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,8 +8,8 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
         fields = ('id','nom',)
 
-class CampagneSerializer(serializers.HyperlinkedModelSerializer):
+class CampaignSerializer(serializers.HyperlinkedModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
     class Meta:
-        model = Campagne
+        model = Campaign
         fields = ('id','titre', 'description', 'image', 'tags')
