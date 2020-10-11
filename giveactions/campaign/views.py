@@ -14,8 +14,8 @@ from .models import Tag, Campaign
 #GET    /campaigns/byTag/?tag=$tagId            get the list of the campaigns which contains the tag with the id tagId
 #POST   /campaigns/                             create a campaigns, without tags, the body must be a json file with the attribute found in the Campaign Model
 #PUT    /campaigns/$id/                         modify the campaigns informations excepts of the tags
-#PUT    /campaigns/$id/addTag/?tag=$tagId       modify by adding the tag with the tagId to the campaign with id
-#PUT    /campaigns/$id/deleteTag/?tag=$tagId    modify by deleting the tag with the tagId to the campaign with id
+#PUT    /campaigns/$id/addTag/?tag=$tagId/      modify by adding the tag with the tagId to the campaign with id
+#PUT    /campaigns/$id/deleteTag/?tag=$tagId/   modify by deleting the tag with the tagId to the campaign with id
 #DELETE /campaigns/$id/                         delete the campaign with the id id
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.all()
@@ -32,6 +32,8 @@ class CampaignViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['put'])
     def addTag(self, request, pk=None):
         tagId = request.GET.get('tag')
+        if not tagId :
+            return Response({'message': 'url not found, no tag parameter'}, status=404)
         campaign = self.get_object()
         try:
             tag = Tag.objects.get(pk=tagId)
@@ -48,6 +50,8 @@ class CampaignViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['put'])
     def deleteTag(self, request, pk=None):
         tagId = request.GET.get('tag')
+        if not tagId :
+            return Response({'message': 'url not found, no tag parameter'}, status=404)
         campaign = self.get_object()
         try:
             tag = Tag.objects.get(pk=tagId)
